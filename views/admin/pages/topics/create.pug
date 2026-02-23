@@ -7,7 +7,7 @@ block main
 
         .card
             .card-body
-                form(method="POST" action="/admin/topics/create")
+                form(method="POST" action=`${prefixAdmin}/topics/create`)
                     .form-group
                         label(for="title") Tiêu đề
                         input#title.form-control(
