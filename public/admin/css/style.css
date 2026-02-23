@@ -65,3 +65,11 @@ body {
   font-weight: 600;
   color: #000;
 }
+
+.image-preview {
+  display: none;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}

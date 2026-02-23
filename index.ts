@@ -1,12 +1,11 @@
 import express,{Express} from "express";
 import dotenv from "dotenv";
-import routesClient from "./routes/client/index.route";
-import routesAdmin from "./routes/admin/index.route";
 import * as database from "./config/database";
 import path from "path";
 import * as systemConfig from "./config/system";
-
 dotenv.config();
+import routesClient from "./routes/client/index.route";
+import routesAdmin from "./routes/admin/index.route";
 
 database.connect();
 
