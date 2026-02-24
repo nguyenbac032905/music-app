@@ -3,6 +3,7 @@ const router = Router();
 import * as controller from "../../controllers/client/song.controller";
 
 router.get("/:slugTopic", controller.songByTopic);
-router.get("/detail/:slugSong", controller.songDetail)
+router.get("/detail/:slugSong", controller.songDetail);
+router.patch("/like/:typeLike/:idSong", controller.like);
 
 export default router;

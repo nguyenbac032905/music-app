@@ -475,3 +475,13 @@ a:hover {
     width: 100%;
   }
 }
+.inner-like {
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.inner-like.active i,
+.inner-like.active span {
+    color: blue;
+}

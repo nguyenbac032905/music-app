@@ -19,3 +19,23 @@ if(aplayer){
         document.querySelector(".inner-thumbnail")?.classList.remove("playing");
     });
 }
+const buttonLike = document.querySelector(".inner-like");
+if(buttonLike){
+    buttonLike.addEventListener("click",() => {
+        const idSong = buttonLike.getAttribute("data-id");
+        const isActive = buttonLike.classList.contains("active");
+
+        const link = `/songs/like/${isActive? "dislike" : "like"}/${idSong}`;
+
+        const spanLike = buttonLike.querySelector("span");
+        const option ={
+            method: "PATCH"
+        }
+        fetch(link,option)
+            .then(res => res.json())
+            .then(data => {
+                spanLike.innerHTML = data.like;
+                buttonLike.classList.toggle("active");
+            })
+    })
+}

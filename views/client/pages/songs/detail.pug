@@ -21,9 +21,9 @@ block main
                             i.fa-solid.fa-music
                             |  #{topic.title}
 
-                        .inner-action.inner-like
+                        .inner-action.inner-like(data-id=song.id)
                             i.fa-regular.fa-thumbs-up
-                            |  #{song.like? song.like : 0}
+                            span  #{song.like? song.like : 0}
 
                         .inner-action.inner-heart
                             i.fa-regular.fa-heart
