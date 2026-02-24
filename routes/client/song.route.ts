@@ -5,5 +5,6 @@ import * as controller from "../../controllers/client/song.controller";
 router.get("/:slugTopic", controller.songByTopic);
 router.get("/detail/:slugSong", controller.songDetail);
 router.patch("/like/:typeLike/:idSong", controller.like);
+router.patch("/heart/:typeHert/:idSong", controller.hert);
 
 export default router;

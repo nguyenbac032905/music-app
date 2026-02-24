@@ -25,9 +25,9 @@ block main
                             i.fa-regular.fa-thumbs-up
                             span  #{song.like? song.like : 0}
 
-                        .inner-action.inner-heart
+                        .inner-action.inner-heart(data-id=song.id)
                             i.fa-regular.fa-heart
-                            |  Bài hát yêu thích
+                            span Bài hát yêu thích
 
                     .inner-play
                         .inner-thumbnail

@@ -39,3 +39,20 @@ if(buttonLike){
             })
     })
 }
+const buttonFavorite = document.querySelector(".inner-heart");
+if(buttonFavorite){
+    buttonFavorite.addEventListener("click", () => {
+        const idSong = buttonFavorite.getAttribute("data-id");
+
+        const isActive = buttonFavorite.classList.contains("active");
+        
+        const link = `/songs/heart/${isActive ? "un-heart" : "heart"}/${idSong}`;
+        fetch(link,{method: "PATCH"})
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                buttonFavorite.classList.toggle("active");
+            });
+    })
+
+}

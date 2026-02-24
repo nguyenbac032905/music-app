@@ -2,6 +2,7 @@ import { Request,Response } from "express";
 import Song from "../../models/song.model";
 import Topic from "../../models/topic.model";
 import Singer from "../../models/singer.model";
+import FavoriteSong from "../../models/favorite-song.model";
 
 export const songByTopic = async (req: Request, res: Response): Promise<void> => {
     const slugTopic = req.params.slugTopic;
@@ -46,4 +47,55 @@ export const like = async (req: Request, res: Response): Promise<void> => {
         message: "thanh cong",
         like: newLike
     })
+}
+export const hert = async (req: Request, res: Response): Promise<void> => {
+    const idSong = req.params.idSong;
+    const typeHert = req.params.typeHert;
+    const song = await Song.findOne({
+        _id: idSong,
+        deleted: false,
+        status: "active"
+    });
+    const existUserFavorite = await FavoriteSong.findOne({userId: "nguyenbac"});
+    switch (typeHert) {
+        case "heart":
+            if(!existUserFavorite){
+                const record = new FavoriteSong({
+                    userId: "nguyenbac",
+                    songsId: [idSong]
+                })
+                await record.save();
+                res.json({
+                    code: 200,
+                    message: "thành công"
+                })
+            }else{
+                await FavoriteSong.updateOne({_id: existUserFavorite.id},{$push: {songsId: idSong}})
+                res.json({
+                    code: 200,
+                    message: "thành công"
+                })
+            }
+            break;
+        case "un-heart":
+            if(!existUserFavorite){
+                 res.json({
+                    code: 400,
+                    message: "chưa tồn tại"
+                })
+            }else{
+                await FavoriteSong.updateOne({_id: existUserFavorite.id},{$pull: {songsId: idSong}})
+                res.json({
+                    code: 200,
+                    message: "xóa thành công"
+                })
+            }
+            break;
+        default:
+            res.json({
+                code: 400,
+                message: "chưa tồn tại"
+            })
+            break;
+    }
 }

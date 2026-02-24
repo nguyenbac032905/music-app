@@ -356,11 +356,11 @@ a:hover {
 
 .song-detail .inner-action.inner-heart {
   cursor: pointer;
-  color: #e74c3c;
+  color: #888;
 }
 
 .song-detail .inner-action.inner-heart i {
-  color: #e74c3c;
+  color: #888;
 }
 
 /* ===============================
@@ -484,4 +484,9 @@ a:hover {
 .inner-like.active i,
 .inner-like.active span {
     color: blue;
+}
+
+.inner-heart.active i,
+.inner-heart.active span {
+    color: #e74c3c;
 }
