@@ -73,3 +73,10 @@ body {
   object-fit: cover;
   border: 1px solid #ccc;
 }
+audio {
+    display: none;
+}
+
+audio source[src] {
+    display: block;
+}

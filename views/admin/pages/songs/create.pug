@@ -48,15 +48,17 @@ block main
                 accept="image/*"
             )
             img.image-preview.upload-image-preview
-        .form-group 
+        .form-group
             label(for="audio") File âm thanh 
-            input(
+            input.form-control-file.upload-audio-input(
                 type="file"
                 class="form-control-file"
                 id="audio"
                 name="audio"
                 accept="audio/*"
             )
+            audio(controls).audio-preview.upload-audio-play
+                source(src="")
 
         .form-group
             label(for="desc") Mô tả

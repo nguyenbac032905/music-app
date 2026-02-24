@@ -1,3 +1,4 @@
+//preview anh
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.querySelector(".upload-image-input");
     const preview = document.querySelector(".upload-image-preview");
@@ -30,5 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         reader.readAsDataURL(file);
+    });
+});
+//preview audio
+document.addEventListener("DOMContentLoaded", function () {
+    const input = document.querySelector(".upload-audio-input");
+    const audio = document.querySelector(".upload-audio-play");
+    const source = audio.querySelector("source");
+
+    input.addEventListener("change", function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const url = URL.createObjectURL(file);
+        source.src = url;
+        audio.style.display = "block";
+        audio.load();
+        audio.play();
     });
 });

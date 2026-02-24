@@ -13,7 +13,7 @@ const songSchema = new mongoose.Schema({
     topicId: String,
     slug: {
         type: String,
-        slug: "fullName",
+        slug: "title",
         unique: true
     },
     deleted: {
