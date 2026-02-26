@@ -1,0 +1,18 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const topic_route_1 = __importDefault(require("./topic.route"));
+const home_route_1 = __importDefault(require("./home.route"));
+const song_route_1 = __importDefault(require("./song.route"));
+const favorite_song_route_1 = __importDefault(require("./favorite-song.route"));
+const search_route_1 = __importDefault(require("./search.route"));
+const routesClient = (app) => {
+    app.use("/topics", topic_route_1.default);
+    app.use("/", home_route_1.default);
+    app.use("/songs", song_route_1.default);
+    app.use("/favorite-songs", favorite_song_route_1.default);
+    app.use("/search", search_route_1.default);
+};
+exports.default = routesClient;

@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-3
+        .row
+            .col-12
+                +box-head("Thêm ca sĩ mới")
+
+        .row
+            .col-md-8
+                .card
+                    .card-body
+                        form(method="POST" action=`${prefixAdmin}/singers/create`)
+                        
+                            .form-group
+                                label(for="fullName") Tên ca sĩ
+                                input#fullName.form-control(
+                                type="text"
+                                name="fullName"
+                                placeholder="Nhập tên ca sĩ"
+                                required
+                                )
+
+                            .form-group
+                                label(for="avatar") Ảnh đại diện (URL)
+                                input#avatar.form-control(
+                                type="text"
+                                name="avatar"
+                                placeholder="https://..."
+                                )
+
+                            .form-group
+                                label(for="status") Trạng thái
+                                select#status.form-control(name="status")
+                                    option(value="active") Hoạt động
+                                    option(value="inactive") Ngừng hoạt động
+
+                            .form-group.mt-4
+                                button.btn.btn-primary(type="submit")
+                                    i.fa-solid.fa-save
+                                    |  Lưu
