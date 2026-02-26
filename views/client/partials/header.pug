@@ -1,18 +1,50 @@
 .header__container
     .header__left
-        a.header__logo(href="/")
-            img(src="https://static-zmp3.zmdcdn.me/skins/common/logo600.png" alt="logo")
+        .row 
+            .col-1
+                a.header__logo(href="/")
+                    img(src="https://static-zmp3.zmdcdn.me/skins/common/logo600.png" alt="logo")
+            .col-3
+                .box-search
+                    form(action="/search/result" method="GET")
+                        .form-group.d-flex.mb-3
+                            input.form-control(
+                            type="text"
+                            name="keyword"
+                            placeholder="Nhập từ khóa..."
+                            value=keyword
+                            )
+                            button.btn.btn-primary(type="submit") Tìm
+                    .inner-suggest
+                        .inner-list
+                            a.inner-item(href="/songs/detail/cat-doi-noi-sau")
+                                .inner-image
+                                    img(src="https://backend.daca.vn/assets/images/cat-doi-noi-sau.jpg")
+                                .inner-info
+                                    .inner-title Cát đôi nỗi sầu
+                                    .inner-singer
+                                        i.fa-solid.fa-microphone-lines
+                                        |  Tăng Duy Tân
 
-        nav.header__nav
-            ul.header__menu
-                li.header__item
-                    a.header__link(href="/") Trang chủ
-                li.header__item
-                    a.header__link(href="/topics") Chủ đề
-                li.header__item
-                    a.header__link(href="/songs") Bài hát
-                li.header__item
-                    a.header__link(href="/about") Giới thiệu
+                            a.inner-item(href="/songs/detail/ngay-mai-nguoi-ta-lay-chong")
+                                .inner-image
+                                    img(src="https://backend.daca.vn/assets/images/ngay-mai-nguoi-ta-lay-chong.jpg")
+                                .inner-info
+                                    .inner-title Ngày Mai Người Ta Lấy Chồng
+                                    .inner-singer
+                                        i.fa-solid.fa-microphone-lines
+                                        |  Thành Đạt
+            .col-8
+                nav.header__nav
+                    ul.header__menu
+                        li.header__item
+                            a.header__link(href="/") Trang chủ
+                        li.header__item
+                            a.header__link(href="/topics") Chủ đề
+                        li.header__item
+                            a.header__link(href="/songs") Bài hát
+                        li.header__item
+                            a.header__link(href="/favorite-songs") Bài hát yêu thích
 
     .header__right
         a.header__login(href="/login") Đăng nhập

@@ -4,6 +4,17 @@ import Topic from "../../models/topic.model";
 import Singer from "../../models/singer.model";
 import FavoriteSong from "../../models/favorite-song.model";
 
+export const index = async (req: Request, res: Response): Promise<void> => {
+    const songs = await Song.find({deleted: false});
+    for(const song of songs){
+        const infoSinger = await Singer.findOne({_id: song.singerId});
+        song["infoSinger"] = infoSinger;
+    }
+    res.render("client/pages/songs/index",{
+        pageTitle: "Favorite Song",
+        songs: songs
+    })
+}
 export const songByTopic = async (req: Request, res: Response): Promise<void> => {
     const slugTopic = req.params.slugTopic;
     const topic = await Topic.findOne({slug: slugTopic});
@@ -19,7 +30,17 @@ export const songByTopic = async (req: Request, res: Response): Promise<void> =>
 }
 export const songDetail = async (req: Request, res: Response): Promise<void> => {
     const slugSong = req.params.slugSong;
+    const favoriteSong = await FavoriteSong.findOne({deleted: false, userId: "nguyenbac"});
+
     const song = await Song.findOne({deleted: false, slug: slugSong});
+
+    if(favoriteSong){
+        for(const item of favoriteSong["songsId"]){
+            if(item == song.id){
+                song["favorited"] = true;
+            }
+        }
+    }
 
     const singer = await Singer.findOne({_id: song.singerId}).select("fullName");
 
@@ -98,4 +119,19 @@ export const hert = async (req: Request, res: Response): Promise<void> => {
             })
             break;
     }
+}
+export const listen = async (req: Request, res: Response): Promise<void> => {
+    const idSong = req.params.idSong;
+    const song = await Song.findOne({
+        _id: idSong,
+        deleted: false,
+        status: "active"
+    });
+    const newListen = song.listen+1;
+    await Song.updateOne({_id: idSong},{$set: {listen: newListen}});
+    res.json({
+        code:200,
+        message: "thanh cong",
+        listen: newListen
+    })
 }

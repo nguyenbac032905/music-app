@@ -59,6 +59,13 @@ block main
             )
             audio(controls).audio-preview.upload-audio-play
                 source(src="")
+        .form-group
+            label(for="lyrics") Lời bài hát
+            textarea.form-control(
+                id="lyrics"
+                name="lyrics"
+                rows="20"
+            )
 
         .form-group
             label(for="desc") Mô tả
