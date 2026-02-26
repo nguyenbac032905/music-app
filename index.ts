@@ -1,5 +1,6 @@
 import express,{Express} from "express";
 import dotenv from "dotenv";
+import methodOverride from "method-override";
 import * as database from "./config/database";
 import path from "path";
 import * as systemConfig from "./config/system";
@@ -16,6 +17,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
+app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "public")));
 

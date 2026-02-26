@@ -31,3 +31,27 @@ export const createPost = async (req: Request, res: Response): Promise<void> => 
     song.save();
     res.redirect(`${systemConfig.prefixAdmin}/songs`);
 }
+export const edit = async (req: Request, res: Response): Promise<void> => {
+    const idSong = req.params.idSong;
+    const song = await Song.findOne({_id: idSong, deleted: false});
+    const topics = await Topic.find({deleted: false}).select("title");
+    const singers = await Singer.find({deleted: false}).select("fullName");
+    res.render("admin/pages/songs/edit",{
+        pageTitle: "Edit",
+        song: song,
+        topics: topics,
+        singers: singers
+    })
+}
+export const editPatch = async (req: Request, res: Response): Promise<void> => {
+    const idSong = req.params.idSong;
+    if(req.body.thumbnail){
+        req.body.thumbnail = req.body.thumbnail[0];
+    }
+    if(req.body.audio){
+        req.body.audio = req.body.audio[0];
+    }
+    console.log(req.body)
+    await Song.updateOne({_id: idSong},req.body);
+    res.redirect(`${systemConfig.prefixAdmin}/songs`);
+}
