@@ -51,7 +51,6 @@ export const editPatch = async (req: Request, res: Response): Promise<void> => {
     if(req.body.audio){
         req.body.audio = req.body.audio[0];
     }
-    console.log(req.body)
     await Song.updateOne({_id: idSong},req.body);
     res.redirect(`${systemConfig.prefixAdmin}/songs`);
 }
